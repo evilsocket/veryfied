@@ -1,0 +1,19 @@
+{
+	"manifest_version": 3,
+	"name": "Veryfied",
+	"version": "1.0",
+	"author": "Simone Margaritelli ( @evilsocket )",
+	"description": "Mark pre-Musk era Twitter verified accounts.",
+	"content_scripts": [
+		{
+			"matches": [
+				"*://*.twitter.com/*"
+			],
+			"js": [
+				"db.js",
+				"veryfied.js"
+			],
+			"run_at": "document_start"
+		}
+	]
+}
