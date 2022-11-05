@@ -30,21 +30,35 @@ function isProfileLink(a) {
 	return true;
 }
 
-function isVeryfied(a) {
+function isVeryfiedLink(a) {
 	var screen_name = a.getAttribute('href').split('/')[1].toLowerCase();
 	return veryfied_users.includes(screen_name);
 }
 
-function decorateVeryfied(a) {
-	// this will allow us to skip it for the next iteration
-	a.setAttribute('veryfied', 'true');
+function isVeryfiedDiv(div) {
+	for (const span of div.querySelectorAll('span')) {
+		if (span.textContent.length > 0 && span.textContent[0] == '@') {
+			var screen_name = span.textContent.substring(1);
+			return veryfied_users.includes(screen_name);
+		}
+	}
+	return false;
+}
 
-	var children = a.getElementsByTagName('*');
+function decorateVeryfied(element) {
+	if (element.hasAttribute('veryfied'))
+		return;
+
+	// this will allow us to skip it for the next iteration
+	element.setAttribute('veryfied', 'true');
+
+	var children = element.getElementsByTagName('*');
 	for (var i = 0; i < children.length; i++) {
 		var child = children[i];
 		// find the first child containing the display name text
 		if (child.childNodes.length == 1 && child.textContent.length > 0) {
 			// add the icon
+			// TODO: use better css to align element especially on profile pages
 			child.innerHTML += icon.innerHTML;
 			break;
 		}
@@ -52,14 +66,23 @@ function decorateVeryfied(a) {
 }
 
 window.setInterval(function () {
+	// profile links
 	for (const a of document.querySelectorAll("a[role='link']")) {
 		// skip non profile links
 		if (!isProfileLink(a))
 			continue;
 
 		// add decoration if this profile is in the database
-		if (isVeryfied(a)) {
+		if (isVeryfiedLink(a)) {
 			decorateVeryfied(a);
+		}
+	}
+
+	// profile page links
+	for (const div of document.querySelectorAll('div[data-testid="UserName"]')) {
+		// add decoration if this profile is in the database
+		if (isVeryfiedDiv(div)) {
+			decorateVeryfied(div);
 		}
 	}
 }, 200);
