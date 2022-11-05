@@ -38,7 +38,7 @@ function isVeryfiedLink(a) {
 function isVeryfiedDiv(div) {
 	for (const span of div.querySelectorAll('span')) {
 		if (span.textContent.length > 0 && span.textContent[0] == '@') {
-			var screen_name = span.textContent.substring(1);
+			var screen_name = span.textContent.substring(1).toLowerCase();
 			return veryfied_users.includes(screen_name);
 		}
 	}
