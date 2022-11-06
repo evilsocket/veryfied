@@ -14,9 +14,7 @@ icon.innerHTML = `
 function isProfileLink(a) {
 	// non profile links have other attributes
 	const valid = ['href', 'role', 'class', undefined];
-	for (var i in a.attributes) {
-		var attr = a.attributes[i];
-
+	for (const attr of a.attributes) {
 		if (typeof (attr) == 'function')
 			continue;
 
@@ -33,7 +31,7 @@ function isProfileLink(a) {
 
 // returns true if the user screen name contained in the anchor is in the database.
 function isVeryfiedLink(a) {
-	var screen_name = a.getAttribute('href').split('/')[1].toLowerCase();
+	var screen_name = a.getAttribute('href').substring(1).toLowerCase();
 	return veryfied_users.includes(screen_name);
 }
 
@@ -50,15 +48,15 @@ function isVeryfiedDiv(div) {
 
 // adds the verified svg badge to the html element.
 function decorateVeryfied(element) {
-	if (element.hasAttribute('veryfied'))
+	// skip if already decorated
+	if (element.hasAttribute('veryfied') || element.querySelectorAll('*[veryfied]').length > 0)
 		return;
 
 	// this will allow us to skip it for the next iteration
 	element.setAttribute('veryfied', 'true');
 
-	var children = element.getElementsByTagName('*');
-	for (var i = 0; i < children.length; i++) {
-		var child = children[i];
+	// locate the child element containing the screen name
+	for (const child of element.getElementsByTagName('*')) {
 		// find the first child containing the display name text
 		if (child.childNodes.length == 1 && child.textContent.length > 0) {
 			// add the icon
