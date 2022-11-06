@@ -10,6 +10,7 @@ icon.innerHTML = `
 	</svg>
 </div>`;
 
+// returns true if the anchor is a profile link by checking its attributes.
 function isProfileLink(a) {
 	// non profile links have other attributes
 	const valid = ['href', 'role', 'class', undefined];
@@ -30,11 +31,13 @@ function isProfileLink(a) {
 	return true;
 }
 
+// returns true if the user screen name contained in the anchor is in the database.
 function isVeryfiedLink(a) {
 	var screen_name = a.getAttribute('href').split('/')[1].toLowerCase();
 	return veryfied_users.includes(screen_name);
 }
 
+// returns true if the user screen name contained in the div is in the database.
 function isVeryfiedDiv(div) {
 	for (const span of div.querySelectorAll('span')) {
 		if (span.textContent.length > 0 && span.textContent[0] == '@') {
@@ -45,6 +48,7 @@ function isVeryfiedDiv(div) {
 	return false;
 }
 
+// adds the verified svg badge to the html element.
 function decorateVeryfied(element) {
 	if (element.hasAttribute('veryfied'))
 		return;
