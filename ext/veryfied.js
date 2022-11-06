@@ -84,7 +84,7 @@ window.setInterval(function () {
 	}
 
 	// profile page links
-	for (const div of document.querySelectorAll('div[data-testid="UserName"]')) {
+	for (const div of document.querySelectorAll('div[data-testid="UserName"], div[data-testid="UserCell"]')) {
 		// add decoration if this profile is in the database
 		if (isVeryfiedDiv(div)) {
 			decorateVeryfied(div);
