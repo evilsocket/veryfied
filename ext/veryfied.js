@@ -65,6 +65,7 @@ function decorateVeryfied(element) {
 	}
 }
 
+// MutationObserver would be a cleaner way to do this, however it doesn't work properly at least on Chrome :(
 window.setInterval(function () {
 	// profile links
 	for (const a of document.querySelectorAll("a[role='link']")) {
