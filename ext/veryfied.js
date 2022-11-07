@@ -73,11 +73,24 @@ window.setInterval(function () {
 		}
 	}
 	// profile page links
-	for (const div of document.querySelectorAll('div[data-testid="UserCell"], div[data-testid="TypeaheadUser"], div[data-testid="conversation"]')) {
+	try {
+		for (const div of document.querySelectorAll('div[data-testid="UserCell"], div[data-testid="TypeaheadUser"]')) {
 		if (isVeryfiedDiv(div)) {
 			decorateVeryfied(div);
 		}
 	}
+	} catch (ex) {}
+	
+	try {
+		for (const div of document.querySelectorAll('div[data-testid="conversation"]')){
+		var conv_div_4 = div;
+		var conv_div_4_1 = conv_div_4.childNodes[0];
+		var conv_div_4_1_2 = conv_div_4_1.childNodes[1];
+		if (isVeryfiedDiv(conv_div_4_1_2)) {
+			decorateVeryfied(conv_div_4_1_2);
+		}
+	}
+	} catch (ex) {}
 	try {
 		document.querySelector('div[data-testid="UserName"]').id = "UserNameBlock";
 		var username_span = document.getElementById('UserNameBlock').getElementsByTagName('span')[0];
@@ -90,7 +103,7 @@ window.setInterval(function () {
 			var hometime6_2 = hometime6.childNodes[1];
 			var hometime6_2_h2 = hometime6_2.getElementsByTagName('h2')[0];
 			var hometime6_2_h2_span = hometime6_2_h2.getElementsByTagName('span')[0];
-		} catch {
+		} catch (ex) {
 			break;
 		}
 		
@@ -106,7 +119,7 @@ window.setInterval(function () {
 				username_span.innerHTML = document.title.replace("/ Twitter", "").replace("(@" +
 					document.title.substring(document.title.indexOf('(@') + 2, document.title
 						.indexOf(')')) + ")", "") + icon2;
-				} catch {
+				} catch (ex) {
 					break;
 				}
 				
