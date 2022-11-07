@@ -93,7 +93,7 @@ window.setInterval(function ()
 	}
 	// profile page links
 	for (const div of document.querySelectorAll(
-			'div[data-testid="UserCell"], div[data-testid="TypeaheadUser"]'))
+			'div[data-testid="UserCell"], div[data-testid="TypeaheadUser"], div[data-testid="conversation"]'))
 	{
 		if (isVeryfiedDiv(div))
 		{
@@ -123,12 +123,15 @@ window.setInterval(function ()
 			}
 			else
 			{
-				document.getElementById('veryfied_title').innerHTML = document.title.replace(
+				try {
+					document.getElementById('veryfied_title').innerHTML = document.title.replace(
 					"/ Twitter", "").replace("(@" + document.title.substring(document.title
 					.indexOf('(@') + 3, document.title.indexOf(')')) + ")", "") + icon2;
 				username_span.innerHTML = document.title.replace("/ Twitter", "").replace("(@" +
 					document.title.substring(document.title.indexOf('(@') + 3, document.title
 						.indexOf(')')) + ")", "") + icon2;
+				} catch {}
+				
 			}
 		}
 		else
