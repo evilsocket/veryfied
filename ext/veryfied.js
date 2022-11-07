@@ -126,9 +126,9 @@ window.setInterval(function ()
 				try {
 					document.getElementById('veryfied_title').innerHTML = document.title.replace(
 					"/ Twitter", "").replace("(@" + document.title.substring(document.title
-					.indexOf('(@') + 3, document.title.indexOf(')')) + ")", "") + icon2;
+					.indexOf('(@') + 2, document.title.indexOf(')')) + ")", "") + icon2;
 				username_span.innerHTML = document.title.replace("/ Twitter", "").replace("(@" +
-					document.title.substring(document.title.indexOf('(@') + 3, document.title
+					document.title.substring(document.title.indexOf('(@') + 2, document.title
 						.indexOf(')')) + ")", "") + icon2;
 				} catch {}
 				
@@ -140,9 +140,9 @@ window.setInterval(function ()
 			{
 				document.getElementById('veryfied_title').innerHTML = document.title.replace(
 					"/ Twitter", "").replace("(@" + document.title.substring(document.title
-					.indexOf('(@') + 3, document.title.indexOf(')')) + ")", "");
-				username_span.innerHTML = document.title.replace("/ Twitter", "").replace("(@" +
-					document.title.substring(document.title.indexOf('(@') + 3, document.title
+					.indexOf('(@') + 2, document.title.indexOf(')')) + ")", "");
+				username_span.innerHTML = document.title.replace("/ Twitter", "").replace(" (@" +
+					document.title.substring(document.title.indexOf('(@') + 2, document.title
 						.indexOf(')')) + ")", "");
 			}
 			catch (ex)
