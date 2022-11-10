@@ -15,4 +15,4 @@ with open('verified.csv', 'rt') as fp:
 db = list(set(db))
 
 with open('ext/db.js', 'w+t') as fp:
-	fp.write('const veryfied_users = %s;' % json.dumps(db))
+	fp.write('const veryfied_users = new Set(%s);' % json.dumps(db))
