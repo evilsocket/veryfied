@@ -32,7 +32,7 @@ function isProfileLink(a) {
 // returns true if the user screen name contained in the anchor is in the database.
 function isVeryfiedLink(a) {
 	var screen_name = a.getAttribute('href').substring(1).toLowerCase();
-	return veryfied_users.includes(screen_name);
+	return veryfied_users.has(screen_name);
 }
 
 // returns true if the user screen name contained in the div is in the database.
@@ -40,7 +40,7 @@ function isVeryfiedDiv(div) {
 	for (const span of div.querySelectorAll('span')) {
 		if (span.textContent.length > 0 && span.textContent[0] == '@') {
 			var screen_name = span.textContent.substring(1).toLowerCase();
-			return veryfied_users.includes(screen_name);
+			return veryfied_users.has(screen_name);
 		}
 	}
 	return false;
